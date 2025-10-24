@@ -1,18 +1,17 @@
 services:
   - type: web
-    name: chest-xray-classifier
+    name: chest-xray-server
     env: python
-    plan: starter         # or "free" / "starter" / "standard"
+    plan: free
     autoDeploy: true
-    buildCommand: |
-      pip install -r requirements.txt
-      git lfs install
-      git lfs pull
+    buildCommand: pip install -r requirements.txt && git lfs install && git lfs pull
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
+      - key: PYTHON_VER SION
+        value: 3.11.9
       - key: PYTHONUNBUFFERED
         value: "1"
       - key: TF_ENABLE_ONEDNN_OPTS
-        value: "0"      # avoids oneDNN warnings / CPU perf quirks
+        value: "0"
       - key: OMP_NUM_THREADS
         value: "1"
