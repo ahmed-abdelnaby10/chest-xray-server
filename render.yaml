@@ -7,8 +7,6 @@ services:
     buildCommand: pip install -r requirements.txt && git lfs install && git lfs pull
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: PYTHON_VER SION
-        value: 3.11.9
       - key: PYTHONUNBUFFERED
         value: "1"
       - key: TF_ENABLE_ONEDNN_OPTS
